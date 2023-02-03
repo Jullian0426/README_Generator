@@ -17,6 +17,9 @@
 
   Run `node index.js` in the terminal.
 
+  Example Video:
+  https://drive.google.com/file/d/1c74CKfg2Mdqv8QBrc-amBzsnU6xh1LHa/view
+
   ## License
 
   N/A
