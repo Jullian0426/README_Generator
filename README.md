@@ -11,7 +11,7 @@
 
   `npm init`
 
- ` npm i inquirer@8.2.4`
+  `npm i inquirer@8.2.4`
 
   ## Usage: 
 
