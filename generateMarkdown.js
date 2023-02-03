@@ -8,12 +8,11 @@ function renderLicenseBadge(license) {
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
-  let link = ``
   if (license) {
-    let link = `(https://opensource.org/licenses/${license})`
+    let link = `https://opensource.org/licenses/${license}`
     return link
   } else {
-    return link
+    return link = ``
   }
 }
 
@@ -22,8 +21,9 @@ function renderLicenseLink(license) {
 function renderLicenseSection(license) {
   if (license) {
     const licenseSection = 
-      `## License
-      ${license} ${badge} ${link}
+    `## License
+
+  ${license} ${renderLicenseLink(license)}
     `
     return licenseSection
   } else {
@@ -33,16 +33,17 @@ function renderLicenseSection(license) {
 }
 
 function renderTable(table) {
-  if (table == 'Yes') {
-    const tableContents = `
-    ## Table of Contents (Optional)
+  if (table == 'Y') {
+    const tableContents = 
+    `## Table of Contents
 
-    If your README is long, add a table of contents to make it easy for users to find what they need.
-
-    - [Installation](#installation)
-    - [Usage](#usage)
-    - [Credits](#credits)
-    - [License](#license)
+  - [Description](#description)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [License](#license)
+  - [Contributing](#contributing)
+  - [Tests](#tests)
+  - [Questions](#questions)
     `
     return tableContents
   } else {
@@ -53,35 +54,37 @@ function renderTable(table) {
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(prompt) {
-  return `# ${prompt.title}
+  return `# ${prompt.title} ${renderLicenseBadge(prompt.license)}
 
   ## Description
 
-  ${description}
+  ${prompt.description}
   
-  ${tableContents}
+  ${renderTable(prompt.table)}
   ## Installation: 
 
-  ${installation}
+  ${prompt.installation}
 
   ## Usage: 
 
-  ${usage}
+  ${prompt.usage}
 
-  ${licenseSection}
+  ${renderLicenseSection(prompt.license)}
 
   ## Contributing
 
-  ${contributing}
+  ${prompt.contributing}
 
   ## Tests
 
-  ${tests}
+  ${prompt.tests}
 
   ## Questions
 
-  ${questions}
+  https://github.com/${prompt.github}
+  
+  ${prompt.email}
   `;
 }
 
-module.exports = generateMarkdown;
+module.exports = generateMarkdown, renderLicenseBadge, renderLicenseLink, renderLicenseSection, renderTable;

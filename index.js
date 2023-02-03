@@ -2,6 +2,10 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const generateMarkdown = require('./generateMarkdown');
+const renderLicenseBadge = require('./generateMarkdown');
+const renderLicenseLink = require('./generateMarkdown');
+const renderLicenseSection = require('./generateMarkdown');
+const renderTable = require('./generateMarkdown');
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -16,9 +20,8 @@ const questions = [
         name: 'description',
     },
     {
-        type: 'checkbox',
-        message: 'Include Table of Contents?',
-        choices: ['Yes', 'No'],
+        type: 'input',
+        message: 'Include Table of Contents? Y for yes, N for no.',
         name: 'table',
     },
     {
@@ -48,8 +51,13 @@ const questions = [
     },
     {
         type: 'input',
-        message: 'Questions',
-        name: 'questions',
+        message: 'Enter your Email Address',
+        name: 'email',
+    },
+    {
+        type: 'input',
+        message: 'Enter your GitHub username',
+        name: 'github',
     },
 ];
 
@@ -78,10 +86,11 @@ function init() {
                 license: response.license,
                 contributing: response.contributing,
                 tests: response.tests,
-                questions: response.questions
+                email: response.email,
+                github: response.github
             }
 
-            const mdString = generateMarkdown(prompt)
+            const mdString = generateMarkdown(prompt);
 
             writeToFile(mdString);
         })
